@@ -1,4 +1,4 @@
-function PhotoGrid({ photos }) {
+function PhotoGrid({ photos, onSelect }) {
   return (
     <div
       style={{
@@ -8,13 +8,22 @@ function PhotoGrid({ photos }) {
       }}
     >
       {photos.map((photo) => (
-        <div
+        <button
           key={photo.id}
-          style={{ border: "1px dashed gray", height: "220px", padding: "8px" }}
+          onClick={() => onSelect(photo.id)}
+          style={{
+            border: "1px dashed gray",
+            height: "220px",
+            padding: "8px",
+            background: "none",
+            color: "inherit",
+            textAlign: "left",
+            cursor: "pointer",
+          }}
         >
           <p>{photo.title}</p>
           <small>{photo.category}</small>
-        </div>
+        </button>
       ))}
     </div>
   );
