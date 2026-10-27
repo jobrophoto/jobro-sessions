@@ -13,11 +13,14 @@ function App() {
       ? photos
       : photos.filter((photo) => photo.category === activeCategory);
 
-  function close() {
+  function handleSelect(id) {
     setOpenIndex(visiblePhotos.findIndex((photo) => photo.id === id));
   }
+  function close() {
+    setOpenIndex(null);
+  }
   function prev() {
-    setOpenIndex((i = (i - 1 + visiblePhotos.length) % visiblePhotos.length));
+    setOpenIndex((i) => (i - 1 + visiblePhotos.length) % visiblePhotos.length);
   }
   function next() {
     setOpenIndex((i) => (i + 1) % visiblePhotos.length);
@@ -28,7 +31,7 @@ function App() {
       <h1>JOBRO SESSIONS</h1>
       <p>The Archive</p>
       <FilterBar active={activeCategory} onChange={setActiveCategory} />
-      <PhotoGrid photos={visiblePhotos} />
+      <PhotoGrid photos={visiblePhotos} onSelect={handleSelect} />
       {openIndex !== null && (
         <Lightbox
           photos={visiblePhotos}
