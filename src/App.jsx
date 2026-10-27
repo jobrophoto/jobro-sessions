@@ -7,6 +7,7 @@ import { photos } from "./data/photos";
 function App() {
   const [activeCategory, setActiveCategory] = useState("ALL");
   const [openIndex, setOpenIndex] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
   const visiblePhotos =
     activeCategory === "ALL"
@@ -25,13 +26,26 @@ function App() {
   function next() {
     setOpenIndex((i) => (i + 1) % visiblePhotos.length);
   }
+  function toggleFavorite(id) {
+    if (favorites.includes(id)) {
+      setFavorites(favorites.filter((favId) => favId !== id));
+    } else {
+      setFavorites([...favorites, id]);
+    }
+  }
 
   return (
     <main>
       <h1>JOBRO SESSIONS</h1>
       <p>The Archive</p>
+      <p>Saved: {favorites.length}</p>
       <FilterBar active={activeCategory} onChange={setActiveCategory} />
-      <PhotoGrid photos={visiblePhotos} onSelect={handleSelect} />
+      <PhotoGrid
+        photos={visiblePhotos}
+        onSelect={handleSelect}
+        favorites={favorites}
+        onToggleFavorite={toggleFavorite}
+      />
       {openIndex !== null && (
         <Lightbox
           photos={visiblePhotos}
