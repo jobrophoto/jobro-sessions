@@ -53,6 +53,8 @@ function App() {
           onClose={close}
           onPrev={prev}
           onNext={next}
+          favorites={favorites}
+          onToggleFavorite={toggleFavorite}
         />
       )}
     </main>

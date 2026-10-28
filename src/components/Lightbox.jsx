@@ -1,6 +1,14 @@
 import { useEffect } from "react";
 
-function Lightbox({ photos, index, onClose, onPrev, onNext }) {
+function Lightbox({
+  photos,
+  index,
+  onClose,
+  onPrev,
+  onNext,
+  favorites,
+  onToggleFavorite,
+}) {
   const photo = photos[index];
 
   useEffect(() => {
@@ -35,6 +43,12 @@ function Lightbox({ photos, index, onClose, onPrev, onNext }) {
       <p>
         {index + 1} / {photos.length}
       </p>
+      <button
+        onClick={() => onToggleFavorite(photo.id)}
+        style={{ position: "absolute", top: "8px", left: "8px" }}
+      >
+        {favorites.includes(photo.id) ? "★" : "☆"}
+      </button>
       <div
         style={{
           border: "1px dashed gray",
