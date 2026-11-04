@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FilterBar from "./components/FilterBar";
 import PhotoGrid from "./components/PhotoGrid";
 import Lightbox from "./components/Lightbox";
@@ -7,7 +7,14 @@ import { photos } from "./data/photos";
 function App() {
   const [activeCategory, setActiveCategory] = useState("ALL");
   const [openIndex, setOpenIndex] = useState(null);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem("favorites");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   const visiblePhotos =
     activeCategory === "ALL"
