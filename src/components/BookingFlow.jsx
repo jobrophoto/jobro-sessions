@@ -17,6 +17,11 @@ function BookingFlow({ favorites }) {
     message: "",
   });
 
+  function canContinue() {
+    if (step === 1) return option;
+    return true;
+  }
+
   return (
     <section>
       <h2>BOOK A SESSION</h2>
@@ -25,13 +30,13 @@ function BookingFlow({ favorites }) {
       {step === 1 && (
         <div>
           <h3>SESSION TYPE</h3>
-          {settings.map((option) => (
+          {types.map((option) => (
             <button
               key={option}
-              onClick={() => setBooking({ ...booking, setting: option })}
+              onClick={() => setBooking({ ...booking, type: option })}
               style={{
                 border:
-                  booking.setting === option
+                  booking.type === option
                     ? "2px solid white"
                     : "1px solid gray",
               }}
@@ -41,13 +46,13 @@ function BookingFlow({ favorites }) {
           ))}
 
           <h3>WHAT KIND OF SETTING?</h3>
-          {types.map((option) => (
+          {settings.map((option) => (
             <button
               key={option}
-              onClick={() => setBooking({ ...booking, type: option })}
+              onClick={() => setBooking({ ...booking, setting: option })}
               style={{
                 border:
-                  booking.type === option
+                  booking.setting === option
                     ? "2px solid white"
                     : "1px solid gray",
               }}
@@ -64,7 +69,10 @@ function BookingFlow({ favorites }) {
       <button onClick={() => setStep(step - 1)} disabled={step === 1}>
         BACK
       </button>
-      <button onClick={() => setStep(step + 1)} disabled={step === 4}>
+      <button
+        onClick={() => setStep(step + 1)}
+        disabled={step === 4 || !canContinue()}
+      >
         NEXT
       </button>
 

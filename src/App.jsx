@@ -3,10 +3,12 @@ import FilterBar from "./components/FilterBar";
 import PhotoGrid from "./components/PhotoGrid";
 import Lightbox from "./components/Lightbox";
 import { photos } from "./data/photos";
+import BookingFlow from "./components/BookingFlow";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("ALL");
   const [openIndex, setOpenIndex] = useState(null);
+  const [view, setView] = useState("archive");
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem("favorites");
     return saved ? JSON.parse(saved) : [];
@@ -44,25 +46,36 @@ function App() {
   return (
     <main>
       <h1>JOBRO SESSIONS</h1>
-      <p>The Archive</p>
-      <p>Saved: {favorites.length}</p>
-      <FilterBar active={activeCategory} onChange={setActiveCategory} />
-      <PhotoGrid
-        photos={visiblePhotos}
-        onSelect={handleSelect}
-        favorites={favorites}
-        onToggleFavorite={toggleFavorite}
-      />
-      {openIndex !== null && (
-        <Lightbox
-          photos={visiblePhotos}
-          index={openIndex}
-          onClose={close}
-          onPrev={prev}
-          onNext={next}
-          favorites={favorites}
-          onToggleFavorite={toggleFavorite}
-        />
+      <nav>
+        <button onClick={() => setView("archive")}>WORK</button>
+        <button onClick={() => setView("book")}>BOOK</button>
+      </nav>
+
+      {view === "archive" ? (
+        <>
+          <p>The Archive</p>
+          <p>Saved: {favorites.length}</p>
+          <FilterBar active={activeCategory} onChange={setActiveCategory} />
+          <PhotoGrid
+            photos={visiblePhotos}
+            onSelect={handleSelect}
+            favorites={favorites}
+            onToggleFavorite={toggleFavorite}
+          />
+          {openIndex !== null && (
+            <Lightbox
+              photos={visiblePhotos}
+              index={openIndex}
+              onClose={close}
+              onPrev={prev}
+              onNext={next}
+              favorites={favorites}
+              onToggleFavorite={toggleFavorite}
+            />
+          )}
+        </>
+      ) : (
+        <BookingFlow favorites={favorites} />
       )}
     </main>
   );
