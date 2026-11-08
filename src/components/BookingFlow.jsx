@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const types = ["PORTRAIT", "BRAND", "PRODUCT"];
-const settings = ["STUDIO", "OUTSIDE", "ENVIRONMETAL"];
+const settings = ["STUDIO", "OUTSIDE", "ENVIRONMENTAL"];
 
 function BookingFlow({ favorites }) {
   const [step, setStep] = useState(1);
@@ -25,13 +25,13 @@ function BookingFlow({ favorites }) {
       {step === 1 && (
         <div>
           <h3>SESSION TYPE</h3>
-          {types.map((option) => (
+          {settings.map((option) => (
             <button
               key={option}
-              onClick={() => setBooking({ ...booking, type: option })}
+              onClick={() => setBooking({ ...booking, setting: option })}
               style={{
                 border:
-                  booking.type === option
+                  booking.setting === option
                     ? "2px solid white"
                     : "1px solid gray",
               }}
@@ -61,11 +61,11 @@ function BookingFlow({ favorites }) {
       {step === 3 && <p>Step 3: your details</p>}
       {step === 4 && <p>Step 4: review</p>}
 
-      <button onClick={() => setStep(step - 1)} disabled={step - 4}>
-        NEXT
-      </button>
-      <button onClick={() => setStep(step - 2)} disabled={step - 1}>
+      <button onClick={() => setStep(step - 1)} disabled={step === 1}>
         BACK
+      </button>
+      <button onClick={() => setStep(step + 1)} disabled={step === 4}>
+        NEXT
       </button>
 
       <pre>{JSON.stringify(booking, null, 2)}</pre>
