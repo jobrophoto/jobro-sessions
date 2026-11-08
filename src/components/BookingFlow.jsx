@@ -41,17 +41,36 @@ function BookingFlow({ favorites }) {
           ))}
 
           <h3>WHAT KIND OF SETTING?</h3>
-          {/* What am I adding here? */}
+          {types.map((option) => (
+            <button
+              key={option}
+              onClick={() => setBooking({ ...booking, type: option })}
+              style={{
+                border:
+                  booking.type === option
+                    ? "2px solid white"
+                    : "1px solid gray",
+              }}
+            >
+              {option}
+            </button>
+          ))}
         </div>
       )}
       {step === 2 && <p>Step 2: date and time</p>}
       {step === 3 && <p>Step 3: your details</p>}
       {step === 4 && <p>Step 4: review</p>}
 
-      <button onClick={() => setStep(___)} disabled={___}></button>
-      <button onClick={() => setStep(___)} disabled={___}></button>
+      <button onClick={() => setStep(step - 1)} disabled={step - 4}>
+        NEXT
+      </button>
+      <button onClick={() => setStep(step - 2)} disabled={step - 1}>
+        BACK
+      </button>
 
       <pre>{JSON.stringify(booking, null, 2)}</pre>
     </section>
   );
 }
+
+export default BookingFlow;
