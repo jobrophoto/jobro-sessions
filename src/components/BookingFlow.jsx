@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { photos } from "../data/photos";
 
 const types = ["PORTRAIT", "BRAND", "PRODUCT"];
 const settings = ["STUDIO", "OUTSIDE", "ENVIRONMENTAL"];
@@ -63,13 +64,15 @@ function BookingFlow({ favorites }) {
       errors.lastName = "Enter your last name.";
     if (booking.email.trim() === "") {
       errors.email = "Enter your email so I can reply.";
-    } else if (!email.includes("@") || !email.includes(".")) {
+    } else if (!booking.email.includes("@") || !booking.email.includes(".")) {
       errors.email = "That email doesn't look right.";
     }
     return errors;
   }
 
   const errors = getErrors();
+  const dateLabel = days.find((d) => d.value === booking.date)?.label;
+  const savedPhotos = photos.filter((photo) => favorites.includes(photo.id));
 
   function handleNext() {
     if (step === 3 && Object.keys(errors).length > 0) {
@@ -229,7 +232,38 @@ function BookingFlow({ favorites }) {
           </div>
         </div>
       )}
-      {step === 4 && <p>Step 4: review</p>}
+      {step === 4 && (
+        <div>
+          <h3>REVIEW YOUR SESSION</h3>
+
+          <h4>SESSION</h4>
+          <button onClick={() => setStep(1)}>[ EDIT ]</button>
+          <p>TYPE: {booking.type}</p>
+          <p>SETTING: {booking.setting}</p>
+          <p>DATE: {dateLabel}</p>
+          <p>TIME: {booking.time}</p>
+
+          <h4>DETAILS</h4>
+          <button onClick={() => setStep(3)}>[ EDIT ]</button>
+          <p>
+            NAME: {booking.firstName} {booking.lastName}
+          </p>
+          <p>EMAIL: {booking.email}</p>
+          <p>PHONE: {booking.phone || "Not provided"}</p>
+
+          <h4>MESSAGE</h4>
+          <button onClick={() => setStep(3)}>[ EDIT ]</button>
+          <p>{booking.message || "No message added"}</p>
+
+          <h4>YOUR REFERENCE SHOTS</h4>
+          {savedPhotos.length === 0 ? (
+            <p>No reference shots saved. You can still book.</p>
+          ) : (
+            savedPhotos.map((photo) => <p key={photo.id}>{photo.title}</p>)
+          )}
+          <p>{savedPhotos.length} SHOTS</p>
+        </div>
+      )}
       <button onClick={() => setStep(step - 1)} disabled={step === 1}>
         BACK
       </button>
