@@ -50,7 +50,7 @@ function BookingFlow({ favorites }) {
 
   function canContinue() {
     if (step === 1) return booking.type !== "" && booking.setting !== "";
-    if (step === 2) return booking.day !== "" && booking.times !== "";
+    if (step === 2) return booking.date !== "" && booking.time !== "";
     return true;
   }
 
@@ -93,7 +93,6 @@ function BookingFlow({ favorites }) {
           ))}
         </div>
       )}
-      if (step === 2) return canContinue true
       {step === 2 && (
         <div>
           <h3>DATE</h3>
