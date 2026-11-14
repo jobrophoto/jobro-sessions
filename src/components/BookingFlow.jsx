@@ -8,7 +8,7 @@ const times = [
   "9:00 AM",
   "10:00 AM",
   "11:00 AM",
-  "12:00pm",
+  "12:00 PM",
   "1:00 PM",
   "2:00 PM",
 ];
@@ -50,6 +50,7 @@ function BookingFlow({ favorites }) {
 
   function canContinue() {
     if (step === 1) return booking.type !== "" && booking.setting !== "";
+    if (step === 2) return booking.day !== "" && booking.times !== "";
     return true;
   }
 
@@ -57,7 +58,6 @@ function BookingFlow({ favorites }) {
     <section>
       <h2>BOOK A SESSION</h2>
       <p>0{step} / 04</p>
-
       {step === 1 && (
         <div>
           <h3>SESSION TYPE</h3>
@@ -93,10 +93,48 @@ function BookingFlow({ favorites }) {
           ))}
         </div>
       )}
-      {step === 2 && <p>Step 2: date and time</p>}
+      if (step === 2) return canContinue true
+      {step === 2 && (
+        <div>
+          <h3>DATE</h3>
+          {days.map((day) => (
+            <button
+              key={day.value}
+              onClick={() => setBooking({ ...booking, date: day.value })}
+              style={{
+                border:
+                  booking.date === day.value
+                    ? "2px solid white"
+                    : "1px solid grey",
+              }}
+            >
+              {day.label}
+            </button>
+          ))}
+
+          {booking.date !== "" && (
+            <div>
+              <h3>PICK A TIME</h3>
+              {times.map((option) => (
+                <button
+                  key={option}
+                  onClick={() => setBooking({ ...booking, time: option })}
+                  style={{
+                    border:
+                      booking.time === option
+                        ? "2px solid white"
+                        : "1px solid grey",
+                  }}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
       {step === 3 && <p>Step 3: your details</p>}
       {step === 4 && <p>Step 4: review</p>}
-
       <button onClick={() => setStep(step - 1)} disabled={step === 1}>
         BACK
       </button>
@@ -106,7 +144,6 @@ function BookingFlow({ favorites }) {
       >
         NEXT
       </button>
-
       <pre>{JSON.stringify(booking, null, 2)}</pre>
     </section>
   );
