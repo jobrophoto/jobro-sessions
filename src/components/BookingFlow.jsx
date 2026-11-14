@@ -35,6 +35,7 @@ function nextDays(count) {
 const days = nextDays(14);
 
 function BookingFlow({ favorites }) {
+  const [attempted, setAttempted] = useState(false);
   const [step, setStep] = useState(1);
   const [booking, setBooking] = useState({
     type: "",
@@ -53,6 +54,22 @@ function BookingFlow({ favorites }) {
     if (step === 2) return booking.date !== "" && booking.time !== "";
     return true;
   }
+
+  function getErrors() {
+    const errors = {};
+    if (booking.firstName.trim() === "")
+      errors.firstName = "Enter your first name.";
+    if (booking.lastName.trim() === "")
+      errors.lastName = "Enter your last name.";
+    if (booking.email.trim() === "") {
+      errors.email = "Enter your email so I can reply.";
+    } else if (!email.includes("@") || !email.includes(".")) {
+      errors.email = "That email doesn't look right.";
+    }
+    return errors;
+  }
+
+  const errors = getErrors();
 
   return (
     <section>
