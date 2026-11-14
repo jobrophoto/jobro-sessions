@@ -99,7 +99,9 @@ function BookingFlow({ favorites }) {
           {days.map((day) => (
             <button
               key={day.value}
-              onClick={() => setBooking({ ...booking, date: day.value })}
+              onClick={() =>
+                setBooking({ ...booking, date: day.value, time: "" })
+              }
               style={{
                 border:
                   booking.date === day.value
