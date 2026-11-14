@@ -134,7 +134,67 @@ function BookingFlow({ favorites }) {
           )}
         </div>
       )}
-      {step === 3 && <p>Step 3: your details</p>}
+      {step === 3 && (
+        <div>
+          <h3>YOUR DETAILS</h3>
+
+          <label>
+            FIRST NAME
+            <input
+              value={booking.firstName}
+              onChange={(e) =>
+                setBooking({ ...booking, firstName: e.target.value })
+              }
+            />
+          </label>
+          <div>
+            <label>
+              LAST NAME
+              <input
+                value={booking.lastName}
+                onChange={(e) =>
+                  setBooking({ ...booking, lastName: e.target.value })
+                }
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              EMAIL
+              <input
+                type="email"
+                value={booking.email}
+                onChange={(e) =>
+                  setBooking({ ...booking, email: e.target.value })
+                }
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              PHONE
+              <input
+                type="tel"
+                value={booking.phone}
+                onChange={(e) =>
+                  setBooking({ ...booking, phone: e.target.value })
+                }
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              MESSAGE
+              <textarea
+                value={booking.message}
+                onChange={(e) =>
+                  setBooking({ ...booking, message: e.target.value })
+                }
+              />
+            </label>
+          </div>
+        </div>
+      )}
       {step === 4 && <p>Step 4: review</p>}
       <button onClick={() => setStep(step - 1)} disabled={step === 1}>
         BACK
