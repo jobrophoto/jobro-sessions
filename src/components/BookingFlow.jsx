@@ -71,6 +71,14 @@ function BookingFlow({ favorites }) {
 
   const errors = getErrors();
 
+  function handleNext() {
+    if (step === 3 && Object.keys(errors).length > 0) {
+      setAttempted(true);
+      return;
+    }
+    setStep(step + 1);
+  }
+
   return (
     <section>
       <h2>BOOK A SESSION</h2>
@@ -164,6 +172,9 @@ function BookingFlow({ favorites }) {
               }
             />
           </label>
+          {attempted && errors.firstName && (
+            <p style={{ color: "red" }}>ERROR: {errors.firstName}</p>
+          )}
           <div>
             <label>
               LAST NAME
@@ -174,6 +185,9 @@ function BookingFlow({ favorites }) {
                 }
               />
             </label>
+            {attempted && errors.lastName && (
+              <p style={{ color: "red" }}>ERROR: {errors.lastName}</p>
+            )}
           </div>
           <div>
             <label>
@@ -186,6 +200,9 @@ function BookingFlow({ favorites }) {
                 }
               />
             </label>
+            {attempted && errors.email && (
+              <p style={{ color: "red" }}>ERROR: {errors.email}</p>
+            )}
           </div>
           <div>
             <label>
@@ -216,10 +233,7 @@ function BookingFlow({ favorites }) {
       <button onClick={() => setStep(step - 1)} disabled={step === 1}>
         BACK
       </button>
-      <button
-        onClick={() => setStep(step + 1)}
-        disabled={step === 4 || !canContinue()}
-      >
+      <button onClick={handleNext} disabled={step === 4 || !canContinue()}>
         NEXT
       </button>
       <pre>{JSON.stringify(booking, null, 2)}</pre>
