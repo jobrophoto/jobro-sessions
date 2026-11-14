@@ -36,6 +36,7 @@ function nextDays(count) {
 const days = nextDays(14);
 
 function BookingFlow({ favorites }) {
+  const [submitted, setSubmitted] = useState(false);
   const [attempted, setAttempted] = useState(false);
   const [step, setStep] = useState(1);
   const [booking, setBooking] = useState({
@@ -80,6 +81,16 @@ function BookingFlow({ favorites }) {
       return;
     }
     setStep(step + 1);
+  }
+
+  if (submitted) {
+    return (
+      <section>
+        <p>RECEIVED</p>
+        <h2>REQUEST SENT!</h2>
+        <p>I'll review your request and reply to {booking.email}.</p>
+      </section>
+    );
   }
 
   return (
@@ -267,10 +278,13 @@ function BookingFlow({ favorites }) {
       <button onClick={() => setStep(step - 1)} disabled={step === 1}>
         BACK
       </button>
-      <button onClick={handleNext} disabled={step === 4 || !canContinue()}>
-        NEXT
-      </button>
-      <pre>{JSON.stringify(booking, null, 2)}</pre>
+      {step < 4 ? (
+        <button onClick={handleNext} disabled={!canContinue()}>
+          NEXT
+        </button>
+      ) : (
+        <button onClick={() => setSubmitted(true)}>CONFIRM</button>
+      )}
     </section>
   );
 }
