@@ -7,9 +7,7 @@ function FilterBar({ active, onChange }) {
         <button
           key={category}
           onClick={() => onChange(category)}
-          style={{
-            border: active === category ? "2px solid white" : "1px solid gray",
-          }}
+          className={active === category ? "chip chip--active" : "chip"}
         >
           {category}
         </button>
