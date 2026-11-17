@@ -106,3 +106,24 @@ label {
   font-size: 20px;
   cursor: pointer;
 }
+
+.nav {
+  display: flex;
+  gap: 8px;
+  padding: 16px 0;
+}
+
+.nav__link {
+  padding: 8px;
+  background: none;
+  color: var(--text-muted);
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav__link--active {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}

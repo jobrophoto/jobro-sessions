@@ -46,9 +46,23 @@ function App() {
   return (
     <main>
       <h1>JOBRO SESSIONS</h1>
-      <nav>
-        <button onClick={() => setView("archive")}>WORK</button>
-        <button onClick={() => setView("book")}>BOOK</button>
+      <nav className="nav">
+        <button
+          className={
+            view === "archive" ? "nav__link nav__link--active" : "nav__link"
+          }
+          onClick={() => setView("archive")}
+        >
+          WORK
+        </button>
+        <button
+          className={
+            view === "book" ? "nav__link nav__link--active" : "nav__link"
+          }
+          onClick={() => setView("book")}
+        >
+          BOOK
+        </button>
       </nav>
 
       {view === "archive" ? (
