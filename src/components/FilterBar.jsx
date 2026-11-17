@@ -2,7 +2,7 @@ const categories = ["ALL", "PORTRAITS", "BRAND", "PRODUCT"];
 
 function FilterBar({ active, onChange }) {
   return (
-    <div>
+    <div className="filter-bar">
       {categories.map((category) => (
         <button
           key={category}

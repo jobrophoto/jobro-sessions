@@ -34,3 +34,26 @@ button,
 label {
   font-family: var(--font-display);
 }
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 24px 0;
+}
+
+.chip {
+  flex: none;
+  padding: 16px 20px;
+  background: none;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.chip--active {
+  color: var(--text);
+  border: 2px solid var(--text);
+}
