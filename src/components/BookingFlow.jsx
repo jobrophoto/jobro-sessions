@@ -96,7 +96,21 @@ function BookingFlow({ favorites }) {
   return (
     <section>
       <h2>BOOK A SESSION</h2>
-      <p>0{step} / 04</p>
+      <div className="progress">
+        <span className="progress__count">0{step} / 04</span>
+        <div className="progress__bar">
+          {[1, 2, 3, 4].map((n) => (
+            <div
+              key={n}
+              className={
+                n <= step
+                  ? "progress__segment progress__segment--filled"
+                  : "progress__segment"
+              }
+            />
+          ))}
+        </div>
+      </div>
       {step === 1 && (
         <div>
           <h3>SESSION TYPE</h3>

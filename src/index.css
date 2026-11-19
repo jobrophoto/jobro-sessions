@@ -166,3 +166,33 @@ label {
   color: var(--error);
   font-size: 12px;
 }
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0 24px;
+}
+
+.progress__count {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.progress__bar {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+}
+
+.progress__segment {
+  flex: 1;
+  height: 10px;
+  border: 1px solid var(--border);
+}
+
+.progress__segment--filled {
+  background: var(--text);
+  border-color: var(--text);
+}
