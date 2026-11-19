@@ -206,43 +206,46 @@ function BookingFlow({ favorites }) {
               <p className="field__error">ERROR: {errors.lastName}</p>
             )}
           </div>
-          <div>
-            <label>
-              EMAIL
-              <input
-                type="email"
-                value={booking.email}
-                onChange={(e) =>
-                  setBooking({ ...booking, email: e.target.value })
-                }
-              />
-            </label>
+          <div className="field">
+            <label htmlFor="email">EMAIL</label>
+            <input
+              id="email"
+              className={
+                attempted && errors.email ? "input input--error" : "input"
+              }
+              type="email"
+              value={booking.email}
+              onChange={(e) =>
+                setBooking({ ...booking, email: e.target.value })
+              }
+            />
+
             {attempted && errors.email && (
-              <p style={{ color: "red" }}>ERROR: {errors.email}</p>
+              <p className="field__error">ERROR: {errors.email}</p>
             )}
           </div>
-          <div>
-            <label>
-              PHONE
-              <input
-                type="tel"
-                value={booking.phone}
-                onChange={(e) =>
-                  setBooking({ ...booking, phone: e.target.value })
-                }
-              />
-            </label>
+          <div className="field">
+            <label htmlFor="phone">PHONE</label>
+            <input
+              id="phone"
+              className="input"
+              type="tel"
+              value={booking.phone}
+              onChange={(e) =>
+                setBooking({ ...booking, phone: e.target.value })
+              }
+            />
           </div>
-          <div>
-            <label>
-              MESSAGE
-              <textarea
-                value={booking.message}
-                onChange={(e) =>
-                  setBooking({ ...booking, message: e.target.value })
-                }
-              />
-            </label>
+          <div className="field">
+            <label htmlFor="message">MESSAGE</label>
+            <textarea
+              id="message"
+              className="input"
+              value={booking.message}
+              onChange={(e) =>
+                setBooking({ ...booking, message: e.target.value })
+              }
+            />
           </div>
         </div>
       )}
