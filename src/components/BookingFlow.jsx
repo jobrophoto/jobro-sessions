@@ -203,7 +203,7 @@ function BookingFlow({ favorites }) {
             />
 
             {attempted && errors.lastName && (
-              <p style={{ color: "red" }}>ERROR: {errors.lastName}</p>
+              <p className="field__error">ERROR: {errors.lastName}</p>
             )}
           </div>
           <div>

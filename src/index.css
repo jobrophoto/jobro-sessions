@@ -127,3 +127,42 @@ label {
   color: var(--text);
   border-bottom-color: var(--text);
 }
+
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 0;
+}
+
+.input {
+  padding: 14px;
+  background: none;
+  color: var(--text);
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+  border: 1px solid var(--text);
+}
+
+.input--error {
+  border: 1px solid var(--error);
+}
+
+.field__error {
+  margin: 0;
+  color: var(--error);
+  font-size: 12px;
+}
