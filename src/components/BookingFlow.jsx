@@ -172,29 +172,36 @@ function BookingFlow({ favorites }) {
       {step === 3 && (
         <div>
           <h3>YOUR DETAILS</h3>
-
-          <label>
-            FIRST NAME
+          <div className="field">
+            <label htmlFor="firstName">FIRST NAME</label>
             <input
+              id="firstName"
+              className={
+                attempted && errors.firstName ? "input input--error" : "input"
+              }
               value={booking.firstName}
               onChange={(e) =>
                 setBooking({ ...booking, firstName: e.target.value })
               }
             />
-          </label>
-          {attempted && errors.firstName && (
-            <p style={{ color: "red" }}>ERROR: {errors.firstName}</p>
-          )}
-          <div>
-            <label>
-              LAST NAME
-              <input
-                value={booking.lastName}
-                onChange={(e) =>
-                  setBooking({ ...booking, lastName: e.target.value })
-                }
-              />
-            </label>
+            {attempted && errors.firstName && (
+              <p className="field__error">ERROR: {errors.firstName}</p>
+            )}
+          </div>
+
+          <div className="field">
+            <label htmlFor="lastName">LAST NAME</label>
+            <input
+              id="lastName"
+              className={
+                attempted && errors.lastName ? "input input--error" : "input"
+              }
+              value={booking.lastName}
+              onChange={(e) =>
+                setBooking({ ...booking, lastName: e.target.value })
+              }
+            />
+
             {attempted && errors.lastName && (
               <p style={{ color: "red" }}>ERROR: {errors.lastName}</p>
             )}
