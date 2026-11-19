@@ -100,75 +100,71 @@ function BookingFlow({ favorites }) {
       {step === 1 && (
         <div>
           <h3>SESSION TYPE</h3>
-          {types.map((option) => (
-            <button
-              key={option}
-              onClick={() => setBooking({ ...booking, type: option })}
-              style={{
-                border:
-                  booking.type === option
-                    ? "2px solid white"
-                    : "1px solid gray",
-              }}
-            >
-              {option}
-            </button>
-          ))}
+          <div className="choices">
+            {types.map((option) => (
+              <button
+                key={option}
+                className={
+                  booking.type === option ? "chip chip--active" : "chip"
+                }
+                onClick={() => setBooking({ ...booking, type: option })}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
 
           <h3>WHAT KIND OF SETTING?</h3>
-          {settings.map((option) => (
-            <button
-              key={option}
-              onClick={() => setBooking({ ...booking, setting: option })}
-              style={{
-                border:
-                  booking.setting === option
-                    ? "2px solid white"
-                    : "1px solid gray",
-              }}
-            >
-              {option}
-            </button>
-          ))}
+          <div className="choices">
+            {settings.map((option) => (
+              <button
+                key={option}
+                className={
+                  booking.setting === option ? "chip chip--active" : "chip"
+                }
+                onClick={() => setBooking({ ...booking, setting: option })}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
         </div>
       )}
       {step === 2 && (
         <div>
           <h3>DATE</h3>
-          {days.map((day) => (
-            <button
-              key={day.value}
-              onClick={() =>
-                setBooking({ ...booking, date: day.value, time: "" })
-              }
-              style={{
-                border:
-                  booking.date === day.value
-                    ? "2px solid white"
-                    : "1px solid grey",
-              }}
-            >
-              {day.label}
-            </button>
-          ))}
+          <div className="choices">
+            {days.map((day) => (
+              <button
+                key={day.value}
+                className={
+                  booking.date === day.value ? "chip chip--active" : "chip"
+                }
+                onClick={() =>
+                  setBooking({ ...booking, date: day.value, time: "" })
+                }
+              >
+                {day.label}
+              </button>
+            ))}
+          </div>
 
           {booking.date !== "" && (
             <div>
               <h3>PICK A TIME</h3>
-              {times.map((option) => (
-                <button
-                  key={option}
-                  onClick={() => setBooking({ ...booking, time: option })}
-                  style={{
-                    border:
-                      booking.time === option
-                        ? "2px solid white"
-                        : "1px solid grey",
-                  }}
-                >
-                  {option}
-                </button>
-              ))}
+              <div className="choices">
+                {times.map((option) => (
+                  <button
+                    key={option}
+                    className={
+                      booking.time === option ? "chip chip--active" : "chip"
+                    }
+                    onClick={() => setBooking({ ...booking, time: option })}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
