@@ -268,14 +268,18 @@ function BookingFlow({ favorites }) {
           <h3>REVIEW YOUR SESSION</h3>
 
           <h4>SESSION</h4>
-          <button onClick={() => setStep(1)}>[ EDIT ]</button>
+          <button className="link-button" onClick={() => setStep(1)}>
+            [ EDIT ]
+          </button>
           <p>TYPE: {booking.type}</p>
           <p>SETTING: {booking.setting}</p>
           <p>DATE: {dateLabel}</p>
           <p>TIME: {booking.time}</p>
 
           <h4>DETAILS</h4>
-          <button onClick={() => setStep(3)}>[ EDIT ]</button>
+          <button className="link-button" onClick={() => setStep(3)}>
+            [ EDIT ]
+          </button>
           <p>
             NAME: {booking.firstName} {booking.lastName}
           </p>
@@ -283,7 +287,9 @@ function BookingFlow({ favorites }) {
           <p>PHONE: {booking.phone || "Not provided"}</p>
 
           <h4>MESSAGE</h4>
-          <button onClick={() => setStep(3)}>[ EDIT ]</button>
+          <button className="link-button" onClick={() => setStep(3)}>
+            [ EDIT ]
+          </button>
           <p>{booking.message || "No message added"}</p>
 
           <h4>YOUR REFERENCE SHOTS</h4>
@@ -295,16 +301,31 @@ function BookingFlow({ favorites }) {
           <p>{savedPhotos.length} SHOTS</p>
         </div>
       )}
-      <button onClick={() => setStep(step - 1)} disabled={step === 1}>
-        BACK
-      </button>
-      {step < 4 ? (
-        <button onClick={handleNext} disabled={!canContinue()}>
-          NEXT
+      <div className="actions">
+        <button
+          className="button button--secondary"
+          onClick={() => setStep(step - 1)}
+          disabled={step === 1}
+        >
+          BACK
         </button>
-      ) : (
-        <button onClick={() => setSubmitted(true)}>CONFIRM</button>
-      )}
+        {step < 4 ? (
+          <button
+            className="button button--primary"
+            onClick={handleNext}
+            disabled={!canContinue()}
+          >
+            NEXT
+          </button>
+        ) : (
+          <button
+            className="button button--primary"
+            onClick={() => setSubmitted(true)}
+          >
+            CONFIRM
+          </button>
+        )}
+      </div>
     </section>
   );
 }
