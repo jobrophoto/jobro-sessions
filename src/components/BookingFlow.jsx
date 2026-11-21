@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { photos } from "../data/photos";
+import ReviewSection from "./ReviewSection";
 
 const types = ["PORTRAIT", "BRAND", "PRODUCT"];
 const settings = ["STUDIO", "OUTSIDE", "ENVIRONMENTAL"];
@@ -266,31 +267,35 @@ function BookingFlow({ favorites }) {
       {step === 4 && (
         <div>
           <h3>REVIEW YOUR SESSION</h3>
+          <ReviewSection
+            title="SESSION"
+            onEdit={() => setStep(1)}
+            rows={[
+              { label: "TYPE", value: booking.type },
+              { label: "SETTING", value: booking.setting },
+              { label: "DATE", value: dateLabel },
+              { label: "TIME", value: booking.time },
+            ]}
+          />
 
-          <h4>SESSION</h4>
-          <button className="link-button" onClick={() => setStep(1)}>
-            [ EDIT ]
-          </button>
-          <p>TYPE: {booking.type}</p>
-          <p>SETTING: {booking.setting}</p>
-          <p>DATE: {dateLabel}</p>
-          <p>TIME: {booking.time}</p>
+          <ReviewSection
+            title="DETAILS"
+            onEdit={() => setStep(2)}
+            rows={[
+              {
+                label: "NAME",
+                value: `${booking.firstName} ${booking.lastName}`,
+              },
+              { label: "EMAIL", value: booking.email },
+              { label: "PHONE", value: booking.phone || "Not provided" },
+            ]}
+          />
 
-          <h4>DETAILS</h4>
-          <button className="link-button" onClick={() => setStep(3)}>
-            [ EDIT ]
-          </button>
-          <p>
-            NAME: {booking.firstName} {booking.lastName}
-          </p>
-          <p>EMAIL: {booking.email}</p>
-          <p>PHONE: {booking.phone || "Not provided"}</p>
-
-          <h4>MESSAGE</h4>
-          <button className="link-button" onClick={() => setStep(3)}>
-            [ EDIT ]
-          </button>
-          <p>{booking.message || "No message added"}</p>
+          <ReviewSection
+            title="DETAILS"
+            onEdit={() => setStep(3)}
+            rows={[{ label: "MESSAGE", value: booking.message }]}
+          />
 
           <h4>YOUR REFERENCE SHOTS</h4>
           {savedPhotos.length === 0 ? (
