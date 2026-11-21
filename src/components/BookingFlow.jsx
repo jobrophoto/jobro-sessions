@@ -280,7 +280,7 @@ function BookingFlow({ favorites }) {
 
           <ReviewSection
             title="DETAILS"
-            onEdit={() => setStep(2)}
+            onEdit={() => setStep(3)}
             rows={[
               {
                 label: "NAME",
@@ -292,9 +292,14 @@ function BookingFlow({ favorites }) {
           />
 
           <ReviewSection
-            title="DETAILS"
+            title="MESSAGE"
             onEdit={() => setStep(3)}
-            rows={[{ label: "MESSAGE", value: booking.message }]}
+            rows={[
+              {
+                label: "MESSAGE",
+                value: booking.message || "No message added",
+              },
+            ]}
           />
 
           <h4>YOUR REFERENCE SHOTS</h4>
