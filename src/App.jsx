@@ -89,7 +89,7 @@ function App() {
           )}
         </>
       ) : (
-        <BookingFlow favorites={favorites} />
+        <BookingFlow favorites={favorites} onDone={() => setView("archive")} />
       )}
     </main>
   );

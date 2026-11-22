@@ -36,7 +36,7 @@ function nextDays(count) {
 
 const days = nextDays(14);
 
-function BookingFlow({ favorites }) {
+function BookingFlow({ favorites, onDone }) {
   const [submitted, setSubmitted] = useState(false);
   const [attempted, setAttempted] = useState(false);
   const [step, setStep] = useState(1);
@@ -111,6 +111,9 @@ function BookingFlow({ favorites }) {
             { label: "PHONE", value: booking.phone || "Not provided" },
           ]}
         />
+        <button className="button button--primary" onClick={onDone}>
+          BACK TO THE ARCHIVE
+        </button>
       </section>
     );
   }
