@@ -304,11 +304,22 @@ function BookingFlow({ favorites }) {
 
           <h4>YOUR REFERENCE SHOTS</h4>
           {savedPhotos.length === 0 ? (
-            <p>No reference shots saved. You can still book.</p>
+            <div className="empty">
+              <p>No reference shots saved.</p>
+              <p>You can still book.</p>
+            </div>
           ) : (
-            savedPhotos.map((photo) => <p key={photo.id}>{photo.title}</p>)
+            <div className="shots">
+              {savedPhotos.map((photo) => (
+                <div key={photo.id} className="shot">
+                  {photo.title}
+                </div>
+              ))}
+            </div>
           )}
-          <p>{savedPhotos.length} SHOTS</p>
+          <p className="shots__count">
+            {savedPhotos.length} {savedPhotos.length === 1 ? "SHOT" : "SHOTS"}
+          </p>
         </div>
       )}
       <div className="actions">
