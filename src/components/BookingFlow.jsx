@@ -86,10 +86,31 @@ function BookingFlow({ favorites }) {
 
   if (submitted) {
     return (
-      <section>
-        <p>RECEIVED</p>
+      <section className="sent">
+        <p className="sent__label">RECEIVED</p>
         <h2>REQUEST SENT!</h2>
         <p>I'll review your request and reply to {booking.email}.</p>
+
+        <ReviewSection
+          title="SESSION"
+          rows={[
+            { label: "TYPE", value: booking.type },
+            { label: "SETTING", value: booking.setting },
+            { label: "DATE", value: dateLabel },
+            { label: "TIME", value: booking.time },
+          ]}
+        />
+        <ReviewSection
+          title="DETAILS"
+          rows={[
+            {
+              label: "NAME",
+              value: `${booking.firstName} ${booking.lastName}`,
+            },
+            { label: "EMAIL", value: booking.email },
+            { label: "PHONE", value: booking.phone || "Not provided" },
+          ]}
+        />
       </section>
     );
   }

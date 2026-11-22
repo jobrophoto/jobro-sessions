@@ -3,9 +3,11 @@ function ReviewSection({ title, onEdit, rows }) {
     <div className="review">
       <div className="review__head">
         <h4>{title}</h4>
-        <button className="link-button" onClick={onEdit}>
-          [ EDIT ]
-        </button>
+        {onEdit && (
+          <button className="link-button" onClick={onEdit}>
+            [ EDIT ]
+          </button>
+        )}
       </div>
       {rows.map((row) => (
         <div key={row.label} className="review__row">
