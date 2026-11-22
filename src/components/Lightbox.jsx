@@ -22,52 +22,31 @@ function Lightbox({
   }, [onClose, onPrev, onNext]);
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "rgba(0, 0, 0, 0.9)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "12px",
-      }}
-    >
-      <button
-        onClick={onClose}
-        style={{ position: "absolute", top: "16px", right: "16px" }}
-      >
+    <div className="lightbox">
+      <button className="lightbox__close" onClick={onClose}>
         x
       </button>
       <p>
         {index + 1} / {photos.length}
       </p>
       <button
+        className="lightbox__star"
         onClick={() => onToggleFavorite(photo.id)}
-        style={{ position: "absolute", top: "8px", left: "8px" }}
       >
         {favorites.includes(photo.id) ? "★" : "☆"}
       </button>
-      <div
-        style={{
-          border: "1px dashed gray",
-          width: "min(345px, 90vw)",
-          height: "60vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        IMAGE
-      </div>
+      <div className="lightbox__image">IMAGE</div>
       <h2>{photo.title}</h2>
       <p>
         {photo.date} · {photo.category}
       </p>
-      <div>
-        <button onClick={onPrev}>&lt;</button>
-        <button onClick={onNext}>&gt;</button>
+      <div className="lightbox__arrows">
+        <button className="lightbox__nav" onClick={onPrev}>
+          &lt;
+        </button>
+        <button className="lightbox__nav" onClick={onNext}>
+          &gt;
+        </button>
       </div>
     </div>
   );
