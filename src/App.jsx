@@ -4,6 +4,7 @@ import PhotoGrid from "./components/PhotoGrid";
 import Lightbox from "./components/Lightbox";
 import { photos } from "./data/photos";
 import BookingFlow from "./components/BookingFlow";
+import logo from "./assets/logo.svg";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("ALL");
@@ -45,7 +46,7 @@ function App() {
 
   return (
     <main>
-      <h1>JOBRO SESSIONS</h1>
+      <img src={logo} alt="JOBRO" height="32" />
       <nav className="nav">
         <button
           className={
