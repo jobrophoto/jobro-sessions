@@ -46,7 +46,14 @@ function App() {
 
   return (
     <main>
-      <img src={logo} alt="JOBRO" height="32" />
+      <h1 className="visually-hidden">JOBRO SESSIONS</h1>
+      <button
+        className="logo-button"
+        onClick={() => setView("archive")}
+        aria-label="JOBRO SESSIONS, go to the archive"
+      >
+        <img className="logo" src={logo} alt="JOBRO" height="32" />
+      </button>
       <nav className="nav">
         <button
           className={

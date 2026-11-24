@@ -372,3 +372,26 @@ label {
   font-size: 20px;
   cursor: pointer;
 }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.logo-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.logo-button:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: 4px;
+}
