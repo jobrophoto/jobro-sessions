@@ -52,7 +52,7 @@ function App() {
         onClick={() => setView("archive")}
         aria-label="JOBRO SESSIONS, go to the archive"
       >
-        <img className="logo" src={logo} alt="JOBRO" height="32" />
+        <img className="logo" src={logo} alt="" height="32" />
       </button>
       <nav className="nav">
         <button
